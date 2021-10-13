@@ -133,7 +133,7 @@ dmypy.json
 .idea/
 
 # ignore models
-.h5
+*.h5
 
 # ignore images
-.png
+*.png
