@@ -131,3 +131,9 @@ dmypy.json
 
 .vscode/
 .idea/
+
+# ignore models
+.h5
+
+# ignore images
+.png
