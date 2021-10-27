@@ -41,3 +41,15 @@ def save_plot(plot, plot_name, plot_dir):
     fig = plot.get_figure()
     fig.savefig(path_to_plot)
 
+# Creating a Tensorboard log directory with unique name
+def get_log_path(log_dir="logs/fit"):
+    uniqueName = time.strftime("log_%Y_%m_%d_%H_%M_%S")
+    log_path = os.path.join(log_dir, uniqueName)
+    print(f"savings logs at : {log_path}")
+    return log_path
+
+def callback(log_dir, patience, ckpt_path):
+    tensorboard_cb = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
+    early_stopping_cb = tf.keras.callbacks.EarlyStopping(patience=patience, restore_best_weights=True)
+    checkpointing_cb = tf.keras.callbacks.ModelCheckpoint(ckpt_path, save_best_only=True)
+    return tensorboard_cb, early_stopping_cb, checkpointing_cb
